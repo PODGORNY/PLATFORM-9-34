@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 // Provider - даёт легкий доступ к глобальным данным, дальним компонентам
 import { Provider } from 'react-redux';
 
-// подключу стор - где редуктор с логикой и общий стэйт
+// подключу стор - где редуктор и стэйт
 import store from './Reducer/store';
 // авторизация сервиса
 import { initAuth } from './Reducer/authSlice';

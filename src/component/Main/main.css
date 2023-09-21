@@ -1,0 +1,13 @@
+.main {
+  padding: 10px 0;
+  background: #ebeef3;
+  height: 100vh;
+  /* overflow-y: scroll; */
+}
+
+.container {
+  width: 100%;
+  max-width: 938px;
+  margin: 0 auto;
+  padding-top: 26px;
+}
