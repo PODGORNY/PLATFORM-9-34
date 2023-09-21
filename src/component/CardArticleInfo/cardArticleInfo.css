@@ -1,0 +1,38 @@
+.btn-container_info {
+  text-align: end;
+}
+
+.btn-delete_info {
+  text-decoration: none;
+  background: unset;
+  border: 1px solid rgb(245, 34, 45);
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 9px 18px;
+  color: rgb(245, 34, 45);
+}
+
+.btn-delete_info:hover {
+  color: white;
+  background: rgb(245, 34, 45);
+}
+
+.btn-edit_info {
+  text-decoration: none;
+  background: unset;
+  cursor: pointer;
+  border-radius: 5px;
+  color: rgb(82, 196, 26);
+  border: 1px solid rgb(82, 196, 26);
+  font-size: 14px;
+  line-height: 22px;
+  padding: 11px 22px;
+  margin-left: 10px;
+}
+
+.btn-edit_info:hover {
+  color: white;
+  background: rgb(82, 196, 26);
+}
