@@ -1,11 +1,3 @@
-.wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
 .card {
   background-color: #ffffff;
   overflow: hidden;
