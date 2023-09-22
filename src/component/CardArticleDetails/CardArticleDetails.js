@@ -10,9 +10,9 @@ import axios from 'axios';
 import { selectAuth } from '../../Reducer/authSlice';
 import { deleteArticleAPI, likeArticleAPI, likeDeleteAPI } from '../../Reducer/articleSlice';
 
-import './cardArticleInfo.css';
+import './cardArticleDetails.css';
 
-const CardArticleInfo = (props) => {
+const cardArticleDetails = (props) => {
   const { author, body, createdAt, description, tagList, title, slug, onClick } = props;
 
   const wrapperRef = useRef(null);
@@ -153,4 +153,4 @@ const CardArticleInfo = (props) => {
   );
 };
 
-export default CardArticleInfo;
+export default cardArticleDetails;

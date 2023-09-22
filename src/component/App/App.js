@@ -10,13 +10,12 @@ import { useState, useEffect } from 'react';
 import { fullArticleAPI } from '../../Service/API';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-
-// import CreateArticle
-// import Details
-// EditProfileForm
-// import Home
+import Home from '../Pages/Home/Home';
+import Details from '../Pages/Details/Details';
+import CreateArticle from '../Pages/CreateArticle/CreateArticle';
 // import LoginForm
 // import RegistrationForm
+// EditProfileForm
 
 function App() {
   // на старте нет статей
