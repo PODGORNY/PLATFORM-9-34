@@ -14,7 +14,7 @@ export const fullArticleAPI = async (slug) => {
 export const allArticle = async () => {
   try {
     const response = await axios.get('https://blog.kata.academy/api/articles?limit=5&offset=5');
-    return response.data.articleCount;
+    return response.data.articlesCount;
   } catch (error) {
     throw new Error(error.response.data.errors);
   }

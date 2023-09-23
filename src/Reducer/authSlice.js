@@ -15,15 +15,15 @@ export const authAPI = createAsyncThunk('auth/authAPI', async (userData) => {
   return response.data;
 });
 
-// регистрация на сервере
+// регистрация на сервере...по кнопке Create
 export const registerAPI = createAsyncThunk('auth/registerAPI', async (userData) => {
   try {
     const response = await axios.post('https://blog.kata.academy/api/users', userData);
     localStorage.setItem('token', response.data.user.token);
     localStorage.setItem('data', JSON.stringify(response.data));
     return response.data;
-  } catch (e) {
-    throw new Error('request error');
+  } catch (error) {
+    throw new Error(error);
   }
 });
 

@@ -13,9 +13,9 @@ import Main from '../Main/Main';
 import Home from '../Pages/Home/Home';
 import Details from '../Pages/Details/Details';
 import CreateArticle from '../Pages/CreateArticle/CreateArticle';
-// import LoginForm
-// import RegistrationForm
-// EditProfileForm
+import LoginForm from '../Pages/LoginForm/LoginForm';
+import RegistrationForm from '../Pages/RegistrationForm/RegistrationForm';
+import EditProfileForm from '../Pages/EditProfileForm/EditProfileForm';
 
 function App() {
   // на старте нет статей
@@ -28,7 +28,7 @@ function App() {
   //
   const slug = localStorage.getItem('slug');
   // получаю статус из стора
-  const status = useSelector((state) => state.article.status);
+  const status = useSelector((state) => state.articles.status);
   const error = status === 'rejected' && (
     <Alert message="Подожди, отдохни пока. Мы устраняем ошибку" type="error" showIcon />
   );
