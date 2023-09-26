@@ -140,7 +140,7 @@ const EditArticle = () => {
             <section key={field.id}>
               <label htmlFor={`tags.${index}.name`}>
                 <input
-                  className="tag-input"
+                  className="text-description"
                   type="text"
                   name={`tags.${index}.name`}
                   {...register(`tags.${index}.name`, {})}
