@@ -12,6 +12,7 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Home from '../Pages/Home/Home';
 import Details from '../Pages/Details/Details';
+import EditArticle from '../Pages/EditArticle/EditArticle';
 import CreateArticle from '../Pages/CreateArticle/CreateArticle';
 import LoginForm from '../Pages/LoginForm/LoginForm';
 import RegistrationForm from '../Pages/RegistrationForm/RegistrationForm';
@@ -57,6 +58,7 @@ function App() {
         {error}
         <Switch>
           <Route path="/" component={Home} exact />
+          <Route path="/articles/:slug/edit">{isAuthor() ? <EditArticle /> : <Redirect to="/" />}</Route>
           <Route path="/articles/:slug" component={Details} />
           <Route path="/:new-article" component={CreateArticle} />
           <Route path="/:sign-in" component={LoginForm} />

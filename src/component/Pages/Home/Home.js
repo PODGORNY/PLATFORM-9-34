@@ -33,7 +33,7 @@ const Home = () => {
   // пагинация - переключение страниц
   useEffect(() => {
     articleDataAPI();
-  }, articleDataAPI);
+  }, [articleDataAPI]);
 
   const articlePagination = (
     <Pagination

@@ -27,7 +27,7 @@ export const registerAPI = createAsyncThunk('auth/registerAPI', async (userData)
   }
 });
 
-// добавить регистрационные данные
+// изменить регистрационные данные
 export const editDataAPI = createAsyncThunk('auth/registerAPI', async (userData) => {
   const token = localStorage.getItem('token');
   const response = await fetch('https://blog.kata.academy/api/user', {

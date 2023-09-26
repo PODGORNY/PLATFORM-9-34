@@ -1,3 +1,4 @@
+// при нажатии на пост...открываю пост с деталями...удалить, отредактировать
 import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
@@ -12,7 +13,7 @@ import { deleteArticleAPI, likeArticleAPI, likeDeleteAPI } from '../../Reducer/a
 
 import './cardArticleDetails.css';
 
-const cardArticleDetails = (props) => {
+const CardArticleDetails = (props) => {
   const { author, body, createdAt, description, tagList, title, slug, onClick } = props;
 
   const wrapperRef = useRef(null);
@@ -144,7 +145,7 @@ const cardArticleDetails = (props) => {
           >
             <button className="btn-delete_info">Delete</button>
           </Popconfirm>
-          <Link to={`/new-article/${slug}`} className="btn-edit_info">
+          <Link to={`/articles/${slug}/edit`} className="btn-edit_info">
             Edit
           </Link>
         </div>
@@ -153,4 +154,4 @@ const cardArticleDetails = (props) => {
   );
 };
 
-export default cardArticleDetails;
+export default CardArticleDetails;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Skeleton } from 'antd';
 
-import CardArticleDetails from '../../CardArticleDetails/CardArticleDetails';
+import CardArticleDetails from '../../../component/CardArticleDetails/CardArticleDetails';
 import { fullArticleAPI } from '../../../Service/API';
 
 //

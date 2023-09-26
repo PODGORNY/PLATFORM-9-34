@@ -6,7 +6,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // API------------------------------------------------------запросы на сервер
-const _URL = 'https://blog.kata.academy/api/';
 
 //получение статей c сервера
 export const articleAPI = createAsyncThunk('articles/articleAPI', async (offset) => {
