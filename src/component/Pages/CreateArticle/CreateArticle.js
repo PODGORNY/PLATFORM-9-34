@@ -26,6 +26,7 @@ const CreateArticle = () => {
     },
   });
 
+  // хуки формы...fields - что вписано в поле тега, добавить, удалить
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'tags',

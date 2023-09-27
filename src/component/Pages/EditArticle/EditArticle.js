@@ -232,6 +232,7 @@ const EditArticle = () => {
     },
   });
 
+  // хуки формы
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'tags',
@@ -254,7 +255,7 @@ const EditArticle = () => {
       setTitleInput(response?.data.article?.title);
       setShortInput(response?.data.article?.description);
       setBodyInput(response?.data.article?.body);
-      setTagsInput(response?.data.article?.title);
+      setTagsInput(response?.data.article?.tagList);
     }
     fetchData();
   }, []);
@@ -349,11 +350,8 @@ const EditArticle = () => {
                 <input
                   className="tag-input"
                   type="text"
-                  placeholder={tagsInput}
                   name={`tags.${index}.name`}
-                  {...register(`tags.${index}.name`, {
-                    required: 'The field is required ',
-                  })}
+                  {...register(`tags.${index}.name`, {})}
                 />
               </label>
               <button
