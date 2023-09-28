@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Skeleton } from 'antd';
 
 import CardArticleDetails from '../../../component/CardArticleDetails/CardArticleDetails';
-import { fullArticleAPI } from '../../../Service/API';
+import { fullArticleAPI } from '../../../Service/articleAPI';
 
 //
 function Details() {

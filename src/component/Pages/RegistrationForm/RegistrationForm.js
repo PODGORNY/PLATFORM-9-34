@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Link, Redirect } from 'react-router-dom';
 
 import { login, selectAuth } from '../../../Reducer/authSlice';
-import { registerUser } from '../../../Service/API';
+import { registerUser } from '../../../Service/articleAPI';
 import './registrationForm.css';
 
 // компонент Форма для Регистрации...аналог Логина

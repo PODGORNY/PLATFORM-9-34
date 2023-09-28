@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { edit } from '../../../Reducer/authSlice';
-import { updateUserProfile, userDataAPI } from '../../../Service/API';
+import { updateUserProfile, userDataAPI } from '../../../Service/articleAPI';
 import './editProfileForm.css';
 
 // компонент редактирования профиля

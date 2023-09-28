@@ -7,7 +7,7 @@ import { Pagination } from 'antd';
 import { articleAPI, changePage } from '../../../Reducer/articleSlice';
 import ListCard from '../../ListCard/ListCard';
 import CardArticle from '../../CardArticle/CardArticle';
-import { allArticle } from '../../../Service/API';
+import { allArticle } from '../../../Service/articleAPI';
 
 import './home.css';
 

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Alert } from 'antd';
 import { useState, useEffect } from 'react';
 
-import { fullArticleAPI } from '../../Service/API';
+import { fullArticleAPI } from '../../Service/articleAPI';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Home from '../Pages/Home/Home';
