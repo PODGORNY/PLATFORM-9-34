@@ -1,0 +1,64 @@
+@import '../../color.scss';
+
+.header {
+  height: 80px;
+  background-color: #ffffff;
+  width: auto;
+  padding: 0 22px;
+  font-size: 18px;
+  line-height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    color: $black;
+    text-decoration: none;
+  }
+  span, button, img{
+    cursor:pointer;
+  }
+
+  &__btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__btn .sign_up,
+  &__btn .create_article {
+    color: $green;
+  }
+  .sign_up {
+    border: 1px solid $green;
+    border-radius: 5px;
+    padding: 6px 18px;
+    margin: 16px 0 13px 19px;
+  }
+  .create_article {
+    font-size: 14px;
+    line-height: 22px;
+    border: 1px solid $green;
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-right: 26px;
+  }
+  .name {
+    margin-right: 16px;
+    font-weight: 600;
+  }
+  .image {
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin-right: 27px;
+    border-radius: 100%;
+  }
+  .log_out {
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    padding: 10px 18px;
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 26px;
+    background-color: white;
+  }
+}

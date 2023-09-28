@@ -78,7 +78,7 @@ export const getArticleList = async (offset = 0, limit = 5) => {
 };
 
 // поставить лайк
-export const postFavorited = async (slug) => {
+export const addLike = async (slug) => {
   const config = {
     method: 'post',
     url: `articles/${slug}/favorite`,
@@ -92,7 +92,7 @@ export const postFavorited = async (slug) => {
 };
 
 //убрать лайк
-export const delFavorited = async (slug) => {
+export const deleteLike = async (slug) => {
   const config = {
     method: 'delete',
     url: `articles/${slug}/favorite`,

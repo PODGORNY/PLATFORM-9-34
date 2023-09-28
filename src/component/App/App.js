@@ -1,73 +1,52 @@
+import React, { useEffect } from 'react';
+// Router - обёртка для компонентов, чтобы поделить их на части,
+// для того чтобы переключаться как по страницам
 // Switch - сработает если нет нужного пути у Route...то что я задам после всех Route
 // Route - указывает путь, по которому переключаются компоненты
 // Redirect - перенаправляет куда укажу если страница недоступна например
-import { Switch, Route, Redirect } from 'react-router-dom';
-// достаёт из стэйта в сторе данные
-import { useSelector } from 'react-redux';
-import { Alert } from 'antd';
-import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { fullArticleAPI } from '../../Service/articleAPI';
+import { checkAuth } from '../../Service/loginRegisterAPI';
+import { getArticleList } from '../../Service/articleAPI';
+// страницы
 import Header from '../Header/Header';
-import Main from '../Main/Main';
-import Home from '../Pages/Home/Home';
-import Details from '../Pages/Details/Details';
-import EditArticle from '../Pages/EditArticle/EditArticle';
-import CreateArticle from '../Pages/CreateArticle/CreateArticle';
-import LoginForm from '../Pages/LoginForm/LoginForm';
-import RegistrationForm from '../Pages/RegistrationForm/RegistrationForm';
-import EditProfileForm from '../Pages/EditProfileForm/EditProfileForm';
+import ArticleList from '../ArticleList/ArticleList';
+import CreateArticle from '../CreateArticle/CreateArticle';
+//import SignIn from '../forms/SignIn';
+//import SignUp from '../forms/SignUp';
+//import Profile from '../forms/Profile';
+import CreatePost from '../Pages/CreatePost';
+
+import styles from './App.module.scss';
 
 function App() {
-  // на старте нет статей
-  const [article, setArticle] = useState(null);
-  // проверка автора статьи
-  const isAuthor = () => {
-    const data = JSON.parse(localStorage.getItem('data'));
-    return data?.user?.username === article?.author?.username;
-  };
-  //
-  const slug = localStorage.getItem('slug');
-  // получаю статус из стора
-  const status = useSelector((state) => state.articles.status);
-  const error = status === 'rejected' && (
-    <Alert message="Подожди, отдохни пока. Мы устраняем ошибку" type="error" showIcon />
-  );
+  const dispatch = useDispatch();
 
-  // при измененнии slug - отправлять запрос на сервер и получать статью
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (slug) {
-          const response = await fullArticleAPI(slug);
-          setArticle(response);
-        }
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-    fetchData();
-  }, [slug]);
+    dispatch(checkAuth());
+    getArticleList();
+  }, []);
 
   // Route делит компоненты на "страницы" - просто ссылки,
   // на которых показывается одно и скрывается другое
   return (
-    <>
-      <Header />
-      <Main>
-        {error}
+    <div className={styles.wrapper}>
+      <Router>
+        <Header />
         <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/articles/:slug/edit">{isAuthor() ? <EditArticle /> : <Redirect to="/" />}</Route>
-          <Route path="/articles/:slug" component={Details} />
-          <Route path="/:new-article" component={CreateArticle} />
-          <Route path="/:sign-in" component={LoginForm} />
-          <Route path="/:sign-up" component={RegistrationForm} />
-          <Route path="/:profile" component={EditProfileForm} />
+          <Route exact path="/" component={ArticleList} />
+          <Route exact path="/articles" component={ArticleList} />
+          <Route exact path="/articles/:slug" component={CreatePost} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/new-article" component={CreateArticle} />
+          <Route path="/articles/:slug/edit" component={CreateArticle} />
           <Redirect to="/" />
         </Switch>
-      </Main>
-    </>
+      </Router>
+    </div>
   );
 }
 

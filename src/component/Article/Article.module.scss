@@ -1,0 +1,106 @@
+@import '../../color.scss';
+
+.article {
+  height: 140px;
+  width: 941px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px 15px 24px 19px;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title{
+  font-size: 20px;
+  line-height: 28px;
+  color: #1890FF;
+  padding-right: 13px;
+  text-decoration: none;
+}
+.heart{
+  padding-right: 13px;
+}
+.name{
+  text-align: right;
+  padding-right: 12px;
+  font-weight: 700;
+}
+.created {
+  color: rgba(0, 0, 0, 0.5);
+  padding-right: 12px;
+  text-align: right;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 800px;
+  overflow: hidden;
+}
+.tagList{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag{
+  width: max-content;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 2px 5px;
+}
+.author{
+  display: flex;
+}
+.image {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+}
+
+.article__more{
+  height: max-content;
+  width: 941px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  .btn_delete, .btn_edit{
+    position: absolute;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    margin: 10px 0 0 10px;
+  }
+  .btn_delete{
+    right: 70px;
+    padding: 6px 17px 5px 17px;
+    color: $red;
+    border-color: $red;
+  }
+  .btn_edit{
+    right: 0;
+    padding: 6px 19px 5px 19px;
+    color: $green;
+    border-color: $green;
+  }
+  .tag{
+    color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  .description{
+    color: rgba(0, 0, 0, 0.3);
+  }
+}

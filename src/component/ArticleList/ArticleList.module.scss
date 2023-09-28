@@ -1,0 +1,19 @@
+.article__list {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 0px;
+  gap: 36px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.spin {
+  margin: 30px auto;
+  width: auto;
+}
+
+.pagination {
+  width: 100%;
+  text-align: center;
+  margin: 20px auto;
+}

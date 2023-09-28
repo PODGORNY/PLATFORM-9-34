@@ -4,9 +4,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // часть редуктора, по работе со статьями...запросы на сервер и прочее
-import articleSlice from './articleSlice';
+import articleSlice from './articleReducer';
 // часть редуктора, для авторизации и регистрации пользователя
-import authSlice from './authSlice';
+import authSlice from './authReducer';
 
 // собираю части редукторов в один
 const store = configureStore({

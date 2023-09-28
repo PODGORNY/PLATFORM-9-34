@@ -15,9 +15,3 @@ root.render(
     <App />
   </Provider>
 );
-
-/*
-// Router - обёртка для компонентов, чтобы поделить их на части,
-// для того чтобы переключаться как по страницам
-import { BrowserRouter as Router } from 'react-router-dom';
-*/
