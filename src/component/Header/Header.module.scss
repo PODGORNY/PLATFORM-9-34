@@ -1,64 +1,108 @@
-@import '../../color.scss';
-
-.header {
-  height: 80px;
-  background-color: #ffffff;
-  width: auto;
-  padding: 0 22px;
-  font-size: 18px;
-  line-height: 28px;
+.main {
+  border: 1px transparent solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  a {
-    color: $black;
-    text-decoration: none;
-  }
-  span, button, img{
-    cursor:pointer;
-  }
+  background-color: #fff;
+  width: auto;
+  height: 80px;
+  font-family: 'Inter', sans-serif;
+}
 
-  &__btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.label {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.85);
+  margin-left: 22px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.authorization {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 19px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  line-height: 28px;
+  padding: 12px 18px;
+  border-radius: 5px;
+  border: 1px transparent solid;
+
+  &:hover {
+    border: 1px #1890ff solid;
+    color: #1890ff;
+    transition: border 0.5s;
   }
-  &__btn .sign_up,
-  &__btn .create_article {
-    color: $green;
+}
+
+.signUp {
+  color: #52c41a;
+  border: 1px #52c41a solid;
+  margin-right: 22px;
+
+  &:hover {
+    background-color: #52c41a;
+    color: #fff;
+    border: 1px #52c41a solid;
+    transition: 0.5s;
   }
-  .sign_up {
-    border: 1px solid $green;
-    border-radius: 5px;
-    padding: 6px 18px;
-    margin: 16px 0 13px 19px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.user {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.userName {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.user__avatar {
+  height: 46px;
+  width: 46px;
+}
+
+.create-article {
+  font-size: 14px;
+  line-height: 22px;
+  color: #52c41a;
+  padding: 6px 10px;
+  border: 1px #52c41a solid;
+  border-radius: 5px;
+  &:hover {
+    background-color: #52c41a;
+    color: #fff;
+    border: 1px #52c41a solid;
+    transition: 0.5s;
   }
-  .create_article {
-    font-size: 14px;
-    line-height: 22px;
-    border: 1px solid $green;
-    border-radius: 5px;
-    padding: 6px 10px;
-    margin-right: 26px;
-  }
-  .name {
-    margin-right: 16px;
-    font-weight: 600;
-  }
-  .image {
-    display: block;
-    width: 46px;
-    height: 46px;
-    margin-right: 27px;
-    border-radius: 100%;
-  }
-  .log_out {
-    border: 1px solid rgba(0, 0, 0, 0.75);
-    border-radius: 5px;
-    padding: 10px 18px;
-    font-size: 14px;
-    line-height: 22px;
-    margin-right: 26px;
-    background-color: white;
+}
+
+.log-out {
+  color: rgba(0, 0, 0, 0.75);
+  border: 1px rgba(0, 0, 0, 0.75) solid;
+  margin-right: 22px;
+  &:hover {
+    border: 1px rgba(0, 0, 0, 0.75) solid;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    transition: 0.5s;
   }
 }

@@ -3,16 +3,19 @@
 // и redux-thunk включен по умолчанию
 import { configureStore } from '@reduxjs/toolkit';
 
-// часть редуктора, по работе со статьями...запросы на сервер и прочее
-import articleSlice from './articleReducer';
-// часть редуктора, для авторизации и регистрации пользователя
-import authSlice from './authReducer';
+// части редуктора
+import userSlice from './slices/user-slice';
+import articlesSlice from './slices/articles-slice';
+import statusSlice from './slices/status-slice';
+import tagsSlice from './slices/tags-slice';
 
 // собираю части редукторов в один
 const store = configureStore({
   reducer: {
-    articles: articleSlice,
-    auth: authSlice,
+    user: userSlice,
+    articles: articlesSlice,
+    status: statusSlice,
+    tags: tagsSlice,
   },
 });
 

@@ -1,19 +1,21 @@
-.article__list {
+.main {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ebeef3;
+  min-height: calc(100vh - 80px);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 26px auto;
   display: flex;
   flex-direction: column;
-  padding: 26px 0px;
-  gap: 36px;
-  width: auto;
-  margin: 0 auto;
+  gap: 26px;
 }
 
-.spin {
-  margin: 30px auto;
-  width: auto;
-}
-
-.pagination {
-  width: 100%;
-  text-align: center;
-  margin: 20px auto;
+.pag {
+  margin-bottom: 20px;
 }

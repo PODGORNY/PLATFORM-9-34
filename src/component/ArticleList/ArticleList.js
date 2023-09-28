@@ -1,58 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import { Pagination, Spin } from 'antd';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Alert, Pagination, Spin } from 'antd';
 
-import { getArticleList } from '../../Service/articleAPI';
-import Article from '../Article/Article';
+import { fetchArticles } from '../../Service/platformAPI';
+import { setLimit, setPage } from '../../Reducer/slices/articles-slice';
+import { setLocation, setStatus, goHome } from '../../Reducer/slices/status-slice';
+import SingleArticle from '../Article/SingleArticle/SingleArticle';
 
-import './ArticleList.module.scss';
+import styles from './ArticleList.module.scss';
 
 function ArticleList() {
-  const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(false);
-  const [articlesCount, setArticlesCount] = useState();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [load, setLoaded] = useState(true);
-  const token = localStorage.getItem('token');
+  const dispatch = useDispatch();
+  const { articles, articlesCount, page, limit } = useSelector((state) => state.articles);
+  const status = useSelector((state) => state.status.status);
+  const { token } = useSelector((state) => state.user.user);
+
+  const PG = Number(localStorage.getItem('page')) || page;
 
   useEffect(() => {
-    getArticleList(currentPage)
-      .then((body) => {
-        setArticles(body.articles), setArticlesCount(body.articlesCount);
-        setLoaded(false);
-      })
-      .catch(() => setError(true));
-  }, [token]);
+    dispatch(goHome(false));
+    dispatch(setLocation('articles-list'));
+    dispatch(setStatus('loading'));
+    dispatch(fetchArticles(page, limit, token));
+  }, [page, limit, dispatch, token]);
 
-  const onChangePage = (page) => {
-    getArticleList(page)
-      .then((body) => {
-        setArticles(body.articles), setArticlesCount(body.articlesCount);
-        setLoaded(false);
-      })
-      .catch(() => setError(true));
-    setCurrentPage(page);
+  const articlez = articles.map((article) => (
+    <li key={article.slug}>
+      <SingleArticle article={article} />
+    </li>
+  ));
+
+  const showContent = (stat) => {
+    switch (stat) {
+      case 'loading':
+        return <Spin size="large" />;
+      case '404':
+        return (
+          <Alert
+            message="По Вашему запросу ничего не найдено"
+            description="Попробуйте изменить запрос"
+            type="warning"
+            showIcon
+          />
+        );
+      case 'error':
+        return <Alert message="Ошибка сервера" description="Попробуйте перезагрузить страницу" type="error" showIcon />;
+      case 'offline':
+        return (
+          <Alert
+            className={styles.error}
+            message="У вас нет интернет соединения!"
+            description="Пожалуйста проверьте ваш кабель"
+            type="error"
+            showIcon
+          />
+        );
+      default:
+        return articlez;
+    }
   };
 
-  const loaded = load ? <Spin size="large" /> : null;
-  const showError = error ? 'Error' : null;
+  const content = showContent(status);
+
+  // eslint-disable-next-line no-shadow
+  const onPaginationChange = (page) => {
+    dispatch(setPage(page));
+    const data = {
+      offset: (page - 1) * 5,
+      token: token || localStorage.token,
+      page: Number(localStorage.getItem('page')),
+    };
+    localStorage.setItem('page', page);
+    dispatch(setLimit(limit));
+    dispatch(fetchArticles(data));
+  };
 
   return (
-    <div className={styles.article__list}>
-      {loaded}
-      {showError}
-      {articles.map((item) => {
-        return <Article key={item.slug} data={item} />;
-      })}
-      {articles.length !== 0 ? (
+    <div className={styles.main}>
+      <ul className={styles.list}>{content}</ul>
+      {status !== 'error' && (
         <Pagination
-          defaultCurrent={1}
+          className={styles.pag}
+          hideOnSinglePage
+          current={PG}
+          pageSize={limit}
+          pageSizeOptions={[5, 10, 20, 40, 100, 500]}
           total={articlesCount}
-          showSizeChanger={false}
-          className={styles.pagination}
-          onChange={onChangePage}
-          current={currentPage}
+          onChange={(PG, pageSize) => onPaginationChange(PG, pageSize)}
         />
-      ) : null}
+      )}
     </div>
   );
 }

@@ -1,0 +1,265 @@
+.cardWrapper {
+    padding: 15px 20px;
+    border: 1px transparent solid;
+    background-color: #fff;
+    width: 940px;
+    height: fit-content;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+}
+  
+.preview {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.singleCard {
+    height: fit-content;
+}
+  
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 682px;
+}
+  
+.titleWrapper {
+    display: flex;
+    gap: 12px;
+}
+  
+.title {
+    text-decoration: none;
+    height: 30px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1890ff;
+    max-width: 650px;
+}
+  
+.blackLike {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 22px;
+  
+    &:before {
+      content: url('../../../image/like.svg');
+      margin-top: 4px;
+      margin-right: 5px;
+    }
+}
+  
+.activeLike {
+    &:hover {
+      cursor: pointer;
+    }
+}
+  
+.redLike {
+    &:before {
+      content: url('../../../image/red-like.svg');
+    }
+}
+  
+.tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 8px;
+}
+  
+.tag {
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 2px;
+  
+    &:hover {
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+}
+  
+.description {
+    margin: 0;
+    font-size: 12px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.5);
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 650px;
+    word-wrap: break-word;
+}
+  
+.text {
+    font-size: 12px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.5);
+    min-height: 45px;
+    overflow: hidden;
+    max-width: 650px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+  
+.pageText > * {
+    max-width: 650px;
+    word-wrap: break-word;
+}
+  
+.pageText {
+    color: rgba(0, 0, 0, 0.75);
+}
+  
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+  
+.authInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+  
+.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+  
+.author {
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+}
+  
+.date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+  
+.avatar {
+    width: 46px;
+    height: 46px;
+}
+  
+.control {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 12px;
+}
+  
+.btn {
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 6px 18px;
+    border-radius: 5px;
+}
+  
+.delete {
+    color: #f5222d;
+    border: 1px #f5222d solid;
+  
+    &:hover {
+      background-color: #f5222d;
+      color: #fff;
+    }
+}
+  
+.edit {
+    color: #52c41a;
+    border: 1px #52c41a solid;
+  
+    &:hover {
+      background-color: #52c41a;
+      color: #fff;
+    }
+}
+  
+.modal {
+    position: absolute;
+    top: 90px;
+    right: -155px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 240px;
+    height: 104px;
+    background-color: #fff;
+    padding: 12px 16px;
+    border-radius: 4px;
+    filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.15));
+  
+    &:before {
+      content: '';
+      background-color: #fff;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      position: absolute;
+      left: -6px;
+      top: 13px;
+    }
+}
+  
+.modalLabel {
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #595959;
+  
+    &:before {
+      content: url('../../../image/warning.svg');
+      margin-right: 9px;
+    }
+}
+  
+.modalBtns {
+    display: flex;
+    gap: 8px;
+}
+  
+.no {
+    padding: 1px 8px;
+    color: #262626;
+    border: 1px #d9d9d9 solid;
+  
+    &:hover {
+      background-color: #d9d9d9;
+      color: #fff;
+    }
+}
+  
+.yes {
+    padding: 1px 8px;
+    color: #fff;
+    border: 1px #1890ff solid;
+    background-color: #1890ff;
+  
+    &:hover {
+      background-color: #fff;
+      color: #1890ff;
+    }
+}
