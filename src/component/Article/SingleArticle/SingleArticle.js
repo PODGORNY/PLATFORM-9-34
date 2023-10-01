@@ -65,7 +65,6 @@ function SingleArticle({ article }) {
   };
   const likeStyl = classNames(styles.blackLike, token && styles.activeLike, article.liked && styles.redLike);
 
-  const editLink = `/articles/${slug}/edit`;
   const deleteBtn = classNames(styles.btn, styles.delete);
   const editBtn = classNames(styles.btn, styles.edit);
   const yesBtn = classNames(styles.btn, styles.yes);
@@ -112,7 +111,7 @@ function SingleArticle({ article }) {
                 </button>
               </li>
               <li>
-                <button type="button" className={editBtn} onClick={() => navigate(editLink)}>
+                <button type="button" className={editBtn} onClick={() => navigate(`/articles/${slug}/edit`)}>
                   Edit
                 </button>
               </li>

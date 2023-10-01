@@ -63,7 +63,7 @@ function CreateArticle() {
   }, [home, dispatch, navigate, memToken, slug]);
 
   useEffect(() => {
-    if (slug && article && Object.keys(article).length > 0) {
+    if (slug && article && Object.keys(article).length > 0 && tagz.length > 0) {
       const newTags = [];
       article.tags.forEach((tag) => {
         newTags.push({

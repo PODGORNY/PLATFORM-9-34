@@ -8,7 +8,9 @@ const tagsSlice = createSlice({
   },
   reducers: {
     createTags(state, action) {
-      state.tags = action.payload;
+      if (action.payload.length !== 0) {
+        state.tags = action.payload;
+      }
     },
     addTag(state) {
       state.tags.push({ id: uuidv4(), label: '' });
