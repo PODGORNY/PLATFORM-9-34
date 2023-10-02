@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+// перебрасывает по ссылке...типа Редиректа
+import { Navigate } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { updateUser } from '../../../Service/platformAPI';
@@ -19,6 +21,11 @@ function Profile() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const servErr = useSelector((state) => state.user.errors);
+  // запрет на переход по ссылке без авторизации
+  const token = useSelector((state) => state.user.user);
+  if (!token) {
+    return <Navigate to="/sign-in" />;
+  }
 
   const onSubmit = (data) => {
     dispatch(setSubmit(false));

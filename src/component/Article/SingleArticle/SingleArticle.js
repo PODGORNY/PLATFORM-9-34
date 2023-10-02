@@ -60,8 +60,9 @@ function SingleArticle({ article }) {
   };
 
   const onDelete = () => {
-    dispatch(deleteArticle(token, slug));
     navigate('/');
+    dispatch(deleteArticle(token, slug));
+    window.location.reload();
   };
   const likeStyl = classNames(styles.blackLike, token && styles.activeLike, article.liked && styles.redLike);
 

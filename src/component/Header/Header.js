@@ -21,7 +21,8 @@ function Header() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { token } = user;
-  const avatar = user.image ? user.image : 'https://static.productionready.io/images/smiley-cyrus.jpg';
+  const avatarPlug = 'https://static.productionready.io/images/smiley-cyrus.jpg';
+  const avatar = user.image ? user.image : avatarPlug;
 
   const onLogOut = () => {
     localStorage.removeItem('user');
@@ -56,7 +57,14 @@ function Header() {
       </Link>
       <Link to="/profile" className={styles.user}>
         <span className={styles.userName}>{user.username}</span>
-        <img className={styles.user__avatar} src={avatar} alt="avatar" />
+        <img
+          className={styles.user__avatar}
+          src={avatar || avatarPlug}
+          onError={(e) => {
+            e.target.src = avatarPlug;
+          }}
+          alt="avatar"
+        />
       </Link>
       <Link to="/" className={logOutBtn} onClick={() => onLogOut()}>
         Log Out
