@@ -62,6 +62,7 @@ function SingleArticle({ article }) {
   const onDelete = () => {
     navigate('/');
     dispatch(deleteArticle(token, slug));
+    window.location.reload();
   };
   const likeStyl = classNames(styles.blackLike, token && styles.activeLike, article.liked && styles.redLike);
 
