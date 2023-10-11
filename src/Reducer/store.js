@@ -1,6 +1,6 @@
 // аналог createStore, но удобнее в настройке
 // собирает части редуктора - slice reducers,
-// и redux-thunk включен по умолчанию
+// и redux-thunk включен по умолчанию...понял, в работе таких комментариев не будет)
 import { configureStore } from '@reduxjs/toolkit';
 
 // части редуктора
