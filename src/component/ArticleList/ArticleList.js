@@ -84,6 +84,7 @@ function ArticleList() {
           hideOnSinglePage
           current={PG}
           pageSize={limit}
+          showSizeChanger={false}
           pageSizeOptions={[5, 10, 20, 40, 100, 500]}
           total={articlesCount}
           onChange={(PG, pageSize) => onPaginationChange(PG, pageSize)}

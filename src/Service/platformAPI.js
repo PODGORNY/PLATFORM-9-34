@@ -29,7 +29,7 @@ const getHeaders = (token) => ({
 });
 
 export const fetchArticles =
-  (page, limit, token = '') =>
+  (page, limit = 5, token = '') =>
   async (dispatch) =>
     axios(`${baseUrl}/articles?&limit=${limit}&offset=${(page - 1) * limit}`, { headers: getHeaders(token) })
       .then((res) => {
