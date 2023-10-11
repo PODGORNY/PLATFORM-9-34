@@ -14,6 +14,18 @@ import SignUp from '../User/SignUp/SignUp';
 import SignIn from '../User/SignIn/SignIn';
 import Profile from '../User/Profile/Profile';
 import CreateArticle from '../../component/Article/CreateArticle/CreateArticle';
+// ярлыки Route
+import {
+  articleList,
+  articleOpen,
+  articleOpenEdit,
+  articlePage,
+  main,
+  newArticle,
+  profile,
+  signIn,
+  signUp,
+} from '../RouteConst/RouteConst';
 
 function App() {
   // Route делит компоненты на "страницы" - просто ссылки,
@@ -21,16 +33,16 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={main} element={<Layout />}>
           <Route index element={<ArticleList />} />
-          <Route path="/articles/" element={<ArticleList />} />
-          <Route path="/articles/page=?:" element={<ArticleList />} />
-          <Route path="/articles/:slug" element={<ArticleForm />} />
-          <Route path="/articles/:slug/edit" element={<CreateArticle />} />
-          <Route path="/new-article" element={<CreateArticle />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path={articleList} element={<ArticleList />} />
+          <Route path={articlePage} element={<ArticleList />} />
+          <Route path={articleOpen} element={<ArticleForm />} />
+          <Route path={articleOpenEdit} element={<CreateArticle />} />
+          <Route path={newArticle} element={<CreateArticle />} />
+          <Route path={signIn} element={<SignIn />} />
+          <Route path={signUp} element={<SignUp />} />
+          <Route path={profile} element={<Profile />} />
         </Route>
       </Routes>
     </div>

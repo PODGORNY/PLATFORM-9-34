@@ -1,0 +1,9 @@
+export const main = '/';
+export const articleList = '/articles/';
+export const articlePage = '/articles/page=?:';
+export const articleOpen = '/articles/:slug';
+export const articleOpenEdit = '/articles/:slug/edit';
+export const newArticle = '/new-article';
+export const signIn = '/sign-in';
+export const signUp = '/sign-up';
+export const profile = '/profile';
