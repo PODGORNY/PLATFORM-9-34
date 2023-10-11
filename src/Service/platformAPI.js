@@ -40,9 +40,6 @@ export const fetchArticles =
       .catch((err) => {
         switch (err.code) {
           case 'ERR_BAD_REQUEST':
-            dispatch(setStatus('404'));
-            break;
-          default:
             dispatch(setStatus('error'));
             break;
         }
