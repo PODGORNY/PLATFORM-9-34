@@ -71,9 +71,9 @@ function ArticleList() {
       page: Number(localStorage.getItem('page')),
     };
     // подстановка выбранной страницы в url.../articles?page=2
-    let url = '?page=';
+    let url = '';
     window.location.href = url;
-    window.location.replace(url + `${page}`);
+    window.location.replace(url + `?page=${page}`);
 
     localStorage.setItem('page', page);
     dispatch(setLimit(limit));
