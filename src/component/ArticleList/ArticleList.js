@@ -70,6 +70,11 @@ function ArticleList() {
       token: token || localStorage.token,
       page: Number(localStorage.getItem('page')),
     };
+    // подстановка выбранной страницы в url.../articles?page=2
+    let url = '?page=';
+    window.location.href = url;
+    window.location.replace(url + `${page}`);
+
     localStorage.setItem('page', page);
     dispatch(setLimit(limit));
     dispatch(fetchArticles(data));
