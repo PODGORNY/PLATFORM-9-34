@@ -22,6 +22,30 @@ const getArticleItem = (article) => ({
 
 const getArticleItems = (articles) => articles.map((article) => getArticleItem(article));
 
+// настройки запросов axios по умолчанию
+/*
+axios.defaults.headers.common.accept = 'application/json';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.common[Authorization] = `Bearer ${token}`;
+
+// instance Axios - шаблон запроса
+const config = {
+    baseURL: `${baseUrl}`;
+    method: 'post',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+};
+const instance = axios.create(config);
+
+export const signUp = async (dataUser) => {
+  const res = await instanceAxios.post('users', dataUser) // путь, данные
+  return res
+}
+*/
+
 const getHeaders = (token) => ({
   Accept: 'application/json',
   'Content-Type': 'application/json',
@@ -89,10 +113,36 @@ export const deleteArticle = (token, slug) => async (dispatch) =>
       dispatch(setStatus('error'));
     });
 
-export const setLike = (token, slug, liked) => async (dispatch) =>
+// лайк проверка стоит или нет
+export const setLike = (token, slug, liked) => async (dispatch) => {
+  if (liked) {
+    dispatch(delLike(token, slug));
+  } else {
+    dispatch(like(token, slug));
+  }
+};
+
+// добавить лайк
+export const like = (token, slug) => async (dispatch) =>
   axios({
     url: `${baseUrl}/articles/${slug}/favorite`,
-    method: liked ? 'delete' : 'post',
+    method: 'post',
+    headers: getHeaders(token),
+  })
+    .then((res) => {
+      dispatch(setStatus('ok'));
+      dispatch(setLiked(getArticleItem(res.data.article)));
+    })
+    .catch(() => {
+      dispatch(setSubmit(true));
+      dispatch(setStatus('error'));
+    });
+
+// удалить лайк
+export const delLike = (token, slug) => async (dispatch) =>
+  axios({
+    url: `${baseUrl}/articles/${slug}/favorite`,
+    method: 'delete',
     headers: getHeaders(token),
   })
     .then((res) => {
