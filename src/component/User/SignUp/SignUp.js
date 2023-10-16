@@ -28,6 +28,24 @@ function SignUp() {
   const onSubmit = (data) => {
     dispatch(setSubmit(false));
     dispatch(registerUser(data));
+    /*
+    dispatch(localStorage.setItem('user', JSON.stringify(registerUser(data)))); // dispatch(registerUser(data));
+
+    if (registerUser(data)) {
+      dispatch(setUser({ user: registerUser(data) }));
+      dispatch(setErrors(null));
+      dispatch(goHome(true));
+      dispatch(setSubmit(true));
+    } else {
+      (err) => {
+        if (err === 422) {
+          dispatch(setSubmit(true));
+          dispatch(setUser(JSON.parse(user)));
+          dispatch(setErrors(err.response.data.errors));
+        }
+      };
+    }
+    */
   };
 
   const navigate = useNavigate();

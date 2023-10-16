@@ -28,20 +28,20 @@ axios.defaults.headers.common.accept = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common[Authorization] = `Bearer ${token}`;
 
+const token = localStorage.getItem('token');
+
 // instance Axios - шаблон запроса
 const config = {
-    baseURL: `${baseUrl}`;
-    method: 'post',
+    baseURL: 'https://blog.kata.academy/api/';
   headers: {
-    Accept: 'application/json',
     'Content-Type': 'application/json',
     Authorization: `Bearer ${token}`,
   },
 };
-const instance = axios.create(config);
+const instanceAxios = axios.create(config);
 
 export const signUp = async (dataUser) => {
-  const res = await instanceAxios.post('users', dataUser) // путь, данные
+  const res = await instanceAxios.post('users', dataUser) // путь куда, данные что
   return res
 }
 */
@@ -169,6 +169,9 @@ const fetchUser = axios.create({
   },
 });
 
+// dispath - перенести туда, где вызывается эта функция
+// local - туда же
+// здесь должен остаться только сам запрос АПИ
 export const getUser = (token) => async (dispatch) => {
   axios({
     url: `${baseUrl}/user`,
@@ -184,6 +187,19 @@ export const getUser = (token) => async (dispatch) => {
     });
 };
 
+/*
+export const registerUser = async (data, login) => {
+
+  // data раскладывается в userData
+  const userData = JSON.stringify(data);
+
+  const response = await (`${_baseURL}/users`, {
+    user: userData,
+  })
+
+  return response.data.user 
+};
+*/
 export const registerUser = (data, login) => async (dispatch) => {
   const user = JSON.stringify({
     user: data,
