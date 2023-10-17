@@ -28,7 +28,7 @@ function SignUp() {
   const onSubmit = (data) => {
     dispatch(setSubmit(false));
     dispatch(registerUser(data));
-    /*
+    /* работает - не трожь
     dispatch(localStorage.setItem('user', JSON.stringify(registerUser(data)))); // dispatch(registerUser(data));
 
     if (registerUser(data)) {
