@@ -23,7 +23,7 @@ const getArticleItem = (article) => ({
 const getArticleItems = (articles) => articles.map((article) => getArticleItem(article));
 
 // настройки запросов axios по умолчанию
-/*
+/* работает не трожь
 axios.defaults.headers.common.accept = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common[Authorization] = `Bearer ${token}`;
@@ -169,9 +169,6 @@ const fetchUser = axios.create({
   },
 });
 
-// dispath - перенести туда, где вызывается эта функция
-// local - туда же
-// здесь должен остаться только сам запрос АПИ
 export const getUser = (token) => async (dispatch) => {
   axios({
     url: `${baseUrl}/user`,
@@ -187,7 +184,7 @@ export const getUser = (token) => async (dispatch) => {
     });
 };
 
-/*
+/* работает - не трожь
 export const registerUser = async (data, login) => {
 
   // data раскладывается в userData
