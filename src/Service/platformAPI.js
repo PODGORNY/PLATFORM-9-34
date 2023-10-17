@@ -185,7 +185,7 @@ export const getUser = (token) => async (dispatch) => {
 };
 
 /* работает - не трожь
-export const registerUser = async (data, login) => {
+export const registerUser = async (data) => {
 
   // data раскладывается в userData
   const userData = JSON.stringify(data);
@@ -195,15 +195,43 @@ export const registerUser = async (data, login) => {
   })
 
   return response.data.user 
+
+  ///////////////////////////////////////////
+  export async function registerUser({ username, email, password }) {
+
+  const body = {
+    user: {
+      username,
+      email,
+      password,
+    },
+  }
+
+  const response = await fetch(`${baseUrl}/users`, {
+    method: 'POST',
+    headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+    body: JSON.stringify(body),
+  })
+
+  if (response.ok) {
+    const user = await userLogin({ email, password })
+    return user
+  }
+  const data = response.json()
+  return data
+}
 };
 */
-export const registerUser = (data, login) => async (dispatch) => {
+export const registerUser = (data) => async (dispatch) => {
   const user = JSON.stringify({
     user: data,
   });
 
   fetchUser({
-    url: login ? '/users/login' : '/users',
+    url: '/users',
     data: user,
   })
     .then((res) => {
@@ -222,6 +250,29 @@ export const registerUser = (data, login) => async (dispatch) => {
     });
 };
 
+/*
+export async function userLogin({ email, password }) {
+
+  const body = {
+    user: {
+      email,
+      password,
+    },
+  }
+
+  const response = axios(`${baseUrl}/users/login`, {
+    method: 'POST',
+    headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+    body: JSON.stringify(body),
+  })
+
+  const data = response.json()
+  return data
+}
+*/
 export const loginUser = (data) => async (dispatch) => {
   const user = JSON.stringify({
     user: data,
