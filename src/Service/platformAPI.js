@@ -224,6 +224,30 @@ export const registerUser = async (data) => {
   return data
 }
 };
+
+///////////
+export const registerUser = async (data) => {
+  const user = JSON.stringify({
+    user: data,
+  });
+
+  try {
+    const response = await fetchUser({
+      url: '/users',
+      data: user,
+    });
+
+    if (response.status === 200) {
+      const userData = response.data.user;
+      localStorage.setItem('user', JSON.stringify(userData));
+      callback { success: true, user: userData };
+    } else if (response.status === 422) {
+      callback { success: false, errors: response.data.errors, user: JSON.parse(user) };
+    }
+  } catch (err) {
+    callback { success: false, error: 'error' };
+  }
+};
 */
 export const registerUser = (data) => async (dispatch) => {
   const user = JSON.stringify({
