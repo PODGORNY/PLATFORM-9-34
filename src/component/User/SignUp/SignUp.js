@@ -30,20 +30,22 @@ function SignUp() {
     dispatch(registerUser(data));
 
     /* работает - не трожь
-    registerUser(data, (result) => {
-  if (result.success) {
-    dispatch(setUser({ user: result.user }));
-    dispatch(setErrors(null));
-    dispatch(goHome(true));
-    dispatch(setSubmit(true));
-  } else {
-    if (result.errors) {
+    dispatch(localStorage.setItem('user', JSON.stringify(registerUser(data)))); // dispatch(registerUser(data));
+
+    if (registerUser(data)) {
+      dispatch(setUser({ user: registerUser(data) }));
+      dispatch(setErrors(null));
+      dispatch(goHome(true));
       dispatch(setSubmit(true));
-      dispatch(setUser(result.user));
-      dispatch(setErrors(result.errors));
+    } else {
+      (err) => {
+        if (err === 422) {
+          dispatch(setSubmit(true));
+          dispatch(setUser(JSON.parse(user)));
+          dispatch(setErrors(err.response.data.errors));
+        }
+      };
     }
-  }
-});
     */
   };
 
