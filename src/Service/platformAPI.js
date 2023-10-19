@@ -185,46 +185,6 @@ export const getUser = (token) => async (dispatch) => {
 };
 
 /* работает - не трожь
-export const registerUser = async (data) => {
-
-  // data раскладывается в userData
-  const userData = JSON.stringify(data);
-
-  const response = await (`${_baseURL}/users`, {
-    user: userData,
-  })
-
-  return response.data.user 
-
-  ///////////////////////////////////////////
-  export async function registerUser({ username, email, password }) {
-
-  const body = {
-    user: {
-      username,
-      email,
-      password,
-    },
-  }
-
-  const response = await fetch(`${baseUrl}/users`, {
-    method: 'POST',
-    headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-    body: JSON.stringify(body),
-  })
-
-  if (response.ok) {
-    const user = await userLogin({ email, password })
-    return user
-  }
-  const data = response.json()
-  return data
-}
-};
-*/
 export const registerUser = (data) => async (dispatch) => {
   const user = JSON.stringify({
     user: data,
@@ -249,30 +209,31 @@ export const registerUser = (data) => async (dispatch) => {
       }
     });
 };
+*/
+export const registerUser = (data, callback) => async () => {
+  const user = JSON.stringify({
+    user: data,
+  });
+
+  try {
+    const response = await fetchUser({
+      url: '/users',
+      data: user,
+    });
+
+    if (response.status === 200) {
+      const userData = response.data.user;
+      localStorage.setItem('user', JSON.stringify(userData));
+      callback({ success: true, user: userData });
+    } else if (response.status === 422) {
+      callback({ success: false, errors: response.data.errors, user: JSON.parse(user) });
+    }
+  } catch (err) {
+    callback({ success: false, error: 'error' });
+  }
+};
 
 /*
-export async function userLogin({ email, password }) {
-
-  const body = {
-    user: {
-      email,
-      password,
-    },
-  }
-
-  const response = axios(`${baseUrl}/users/login`, {
-    method: 'POST',
-    headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-    body: JSON.stringify(body),
-  })
-
-  const data = response.json()
-  return data
-}
-*/
 export const loginUser = (data) => async (dispatch) => {
   const user = JSON.stringify({
     user: data,
@@ -295,6 +256,29 @@ export const loginUser = (data) => async (dispatch) => {
         dispatch(setErrors(err.response.data.errors));
       }
     });
+};
+*/
+
+export const loginUser = (data, callback) => async () => {
+  const user = JSON.stringify({
+    user: data,
+  });
+  try {
+    const response = await fetchUser({
+      url: '/users/login',
+      data: user,
+    });
+
+    if (response.status === 200) {
+      const userData = response.data.user;
+      localStorage.setItem('user', JSON.stringify(userData));
+      callback({ success: true, user: userData });
+    } else if (response.status === 422) {
+      callback({ success: false, errors: response.data.errors, user: JSON.parse(user) });
+    }
+  } catch (err) {
+    callback({ success: false, error: 'error' });
+  }
 };
 
 export const updateUser = (data) => async (dispatch) => {

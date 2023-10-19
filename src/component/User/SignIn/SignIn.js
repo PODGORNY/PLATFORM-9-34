@@ -4,10 +4,12 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import { registerUser } from '../../../Service/platformAPI';
-import { setErrors } from '../../../Reducer/slices/user-slice';
+import { loginUser } from '../../../Service/platformAPI';
+//import { setErrors } from '../../../Reducer/slices/user-slice';
 import signUp from '../SignUp/SignUp.module.scss';
-import { setSubmit } from '../../../Reducer/slices/status-slice';
+//import { setSubmit } from '../../../Reducer/slices/status-slice';
+import { setStatus, goHome, setSubmit, setGoTo } from '../../../Reducer/slices/status-slice';
+import { setErrors, setUser } from '../../../Reducer/slices/user-slice';
 
 import styles from './SignIn.module.scss';
 
@@ -26,7 +28,25 @@ function SignIn() {
 
   const onSubmit = (data) => {
     dispatch(setSubmit(false));
-    dispatch(registerUser(data, true));
+    dispatch(
+      // dispatch(loginUser(data)
+      loginUser(data, (result) => {
+        if (result.success) {
+          dispatch(setUser({ user: result.user }));
+          dispatch(setErrors(null));
+          dispatch(goHome(true));
+          dispatch(setSubmit(true));
+        } else {
+          dispatch(setSubmit(true));
+          if (result.errors) {
+            dispatch(setUser(result.user));
+            dispatch(setErrors(result.errors));
+          } else {
+            // Обработка других ошибок
+          }
+        }
+      })
+    );
   };
 
   const navigate = useNavigate();

@@ -5,8 +5,10 @@ import { useForm } from 'react-hook-form';
 import classNames from 'classnames';
 
 import { registerUser } from '../../../Service/platformAPI';
-import { setErrors } from '../../../Reducer/slices/user-slice';
-import { setSubmit } from '../../../Reducer/slices/status-slice';
+//import { setErrors } from '../../../Reducer/slices/user-slice';
+//import { setSubmit } from '../../../Reducer/slices/status-slice';
+import { setStatus, goHome, setSubmit, setGoTo } from '../../../Reducer/slices/status-slice';
+import { setErrors, setUser } from '../../../Reducer/slices/user-slice';
 
 import styles from './SignUp.module.scss';
 
@@ -27,7 +29,23 @@ function SignUp() {
 
   const onSubmit = (data) => {
     dispatch(setSubmit(false));
-    dispatch(registerUser(data));
+    dispatch(
+      // dispatch(registerUser(data))
+      registerUser(data, (result) => {
+        if (result.success) {
+          dispatch(setUser({ user: result.user }));
+          dispatch(setErrors(null));
+          dispatch(goHome(true));
+          dispatch(setSubmit(true));
+        } else {
+          if (result.errors) {
+            dispatch(setSubmit(true));
+            dispatch(setUser(result.user));
+            dispatch(setErrors(result.errors));
+          }
+        }
+      })
+    );
 
     /* работает - не трожь
     dispatch(localStorage.setItem('user', JSON.stringify(registerUser(data)))); // dispatch(registerUser(data));
