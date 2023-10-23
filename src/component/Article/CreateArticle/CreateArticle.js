@@ -41,6 +41,7 @@ function CreateArticle() {
     register,
     formState: { errors },
     handleSubmit,
+    validate,
   } = useForm();
 
   const sendTags = tags.map((tag) => tag.label).filter((tag) => tag !== '');
@@ -95,6 +96,7 @@ function CreateArticle() {
                 required
                 {...register('title', {
                   required: 'Title can`t be empty.',
+                  validate: (value) => !value.includes(' ') || 'Пробелы не допускаются',
                 })}
               />
             </label>
@@ -112,6 +114,7 @@ function CreateArticle() {
                 defaultValue={slug && article && article.description}
                 {...register('description', {
                   required: 'Description can`t be empty.',
+                  validate: (value) => !value.includes(' ') || 'Пробелы не допускаются',
                 })}
               />
             </label>
@@ -128,6 +131,7 @@ function CreateArticle() {
                 defaultValue={slug && article && article.text}
                 {...register('body', {
                   required: 'Text can`t be empty.',
+                  validate: (value) => !value.includes(' ') || 'Пробелы не допускаются',
                 })}
               />
             </label>

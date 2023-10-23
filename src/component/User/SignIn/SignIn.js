@@ -15,11 +15,11 @@ import styles from './SignIn.module.scss';
 
 function SignIn() {
   const {
-    register,
-    formState: { errors },
-    handleSubmit,
+    register, // получает введённое в поле значение, проверяет его, отправляет в handleSubmit
+    formState: { errors }, // отключает форму после отправки до следующего ввода
+    handleSubmit, // onSubmit - отправка данных
     setValue,
-    watch,
+    watch, // видит текущее значение формы и следит за его изменениями
   } = useForm();
 
   const servErr = useSelector((state) => state.user.errors);
