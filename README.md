@@ -1,1 +1,1 @@
-[платформа Девять и три четверти...моральных сил не осталось, но я верю в чудо](https://platform-9-34.vercel.app/)
+[PLATFORM-9-34](https://platform-9-34.vercel.app/)
